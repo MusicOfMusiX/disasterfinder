@@ -11,6 +11,7 @@ __pycache__/
 
 # Misc.
 .DS_Store
+reference/
 
 # Distribution / packaging
 .Python
