@@ -12,6 +12,7 @@ __pycache__/
 # Misc.
 .DS_Store
 reference/
+TODO.md
 
 # Distribution / packaging
 .Python
