@@ -28,7 +28,7 @@ This program does not advocate natural disasters, however.
     4: Oceania
 
 ## Notes
-`read_csv_raw` reads all 4500+ lines from DATASET1, even when not all rows are used. Despite the slight sacrifice in performance, this makes the processing of data into numpy arrays easier later on.
+`read_csv_raw` reads everything from a given dataset, even when not all rows are used. Despite the slight sacrifice in performance, this makes the processing of data easier later on.
 
 ## Usage
 TBD
