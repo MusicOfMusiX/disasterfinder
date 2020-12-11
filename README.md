@@ -27,6 +27,16 @@ This program does not advocate natural disasters, however.
     3: Europe
     4: Oceania
 
+### Season indexing
+    0: Winter, months 12, 1, 2
+    1: Spring, months 3, 4, 5
+    2: Summer, months 6, 7, 8
+    3: Fall, months 9, 10, 11
+
+### Search interest longevity
+- Minimum 1 month, maximum 3 months.
+- Add month when next month interest >= 0.7 * peak interest.
+
 ## Notes
 `read_csv_raw` reads everything from a given dataset, even when not all rows are used. Despite the slight sacrifice in performance, this makes the processing of data easier later on.
 
