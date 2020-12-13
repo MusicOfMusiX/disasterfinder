@@ -43,7 +43,7 @@ def _calculate_longevity(data: List[List[int]]) -> List[List[int]]:
     return data[:-2]
 
 
-def _convert_to_dict(datalist: List[List[int]]) -> Tuple[Dict[int, Dict[int, int]], Dict[int, Dict[int, int]]]:
+def _convert_to_dict(data_list: List[List[int]]) -> Tuple[Dict[int, Dict[int, int]], Dict[int, Dict[int, int]]]:
     peak_dict = {}
     longevity_dict = {}
     # Add initial keys to avoid keyerror.
@@ -51,7 +51,7 @@ def _convert_to_dict(datalist: List[List[int]]) -> Tuple[Dict[int, Dict[int, int
         peak_dict[year] = {}
         longevity_dict[year] = {}
 
-    for row in datalist:
+    for row in data_list:
         peak_dict[row[0]][row[1]] = row[2]
         longevity_dict[row[0]][row[1]] = row[3]
 

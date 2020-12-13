@@ -25,21 +25,21 @@ class Model:
     def __init__(self, _target: str):
         self.target = _target
 
-        self.rd1_data = rd1.read_csv("data/DATASET1_FULL.csv")
+        self.rd1_data = rd1.read_csv("data/DATASET1_FULL.csv", cutoff=3000)
         self.rd2_peak_dict, self.rd2_longevity_dict = rd2.read_csv("data/DATASET2_FULL.csv")
 
         self._generate_sets()
         self._build()
 
-    def train(self) -> None:
-        self.model.fit(self.train_inputs, self.train_outputs, epochs=20)
+    def train(self) -> tf.keras.callbacks.History:
+        return self.model.fit(self.train_inputs, self.train_outputs, epochs=60)
 
     def test(self) -> None:
         self.model.evaluate(self.test_inputs, self.test_outputs)
 
-    def predict(self, input_features: List[float]) -> float:
-        result = self.model.predict(np.array(input_features))
-        return result[0]
+    def predict(self, inputs: List[List[float]]) -> List[List[float]]:
+        result = self.model.predict(np.array(inputs))
+        return result.tolist()
 
     def _build(self) -> None:
         self.model = tf.keras.Sequential([

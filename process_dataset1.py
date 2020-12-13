@@ -4,7 +4,7 @@ from typing import List, Any
 # data array: [year, month, [season + type + region + deaths + affected]]
 
 
-def read_csv(filepath: str) -> List[List[Any]]:  # Any can be an int (year-month) or a list.
+def read_csv(filepath: str, cutoff=4500) -> List[List[Any]]:  # Any can be an int (year-month) or a list of ints (features).
     # remember, everything in the csv are strings, convert them.
 
     with open(filepath) as file:
@@ -24,7 +24,7 @@ def read_csv(filepath: str) -> List[List[Any]]:  # Any can be an int (year-month
 
             data.append([year, month, season + dtype + region + [deaths] + [affected]])
 
-    return data
+    return data[:cutoff]
 
 
 def _classify_season(month: int) -> List[float]:
