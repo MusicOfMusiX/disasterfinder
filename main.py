@@ -1,8 +1,12 @@
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
+import model as pm
 
 if __name__ == '__main__':
-    pass
-    # print("TF version: " + tf.__version__)
+    model_a = pm.Model('peak')
+    model_b = pm.Model('longevity')
+
+    model_a.train()
+    model_a.test()
+
+    model_b.train()
+    model_b.test()
 

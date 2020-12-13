@@ -1,11 +1,10 @@
 import csv
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
-# calculate peak and longevity values here.
-# final data array: [year, month, peak, longevity]
+# data map: {year: {month: peak/longevity}}
 
 
-def read_csv_raw(filepath: str) -> List[List[int]]:
+def read_csv(filepath: str) -> Tuple[Dict[int, Dict[int, int]], Dict[int, Dict[int, int]]]:
     with open(filepath) as file:
         reader = csv.reader(file)
         next(reader)
@@ -20,9 +19,7 @@ def read_csv_raw(filepath: str) -> List[List[int]]:
 
             data.append([year, month, peak])
 
-        data = calculate_longevity(data)
-
-    return data
+    return _convert_to_dict(_calculate_longevity(data))
 
 
 # no need to calculate peak, peak is just the value @ date.
@@ -32,7 +29,7 @@ def read_csv_raw(filepath: str) -> List[List[int]]:
 # longevity is cut off when decreased > 30%
 # September 2020 is the final month.
 
-def calculate_longevity(data: List[List[int]]) -> List[List[int]]:
+def _calculate_longevity(data: List[List[int]]) -> List[List[int]]:
     for stat_index in range(0, len(data) - 2):
         count = 1
         peak = float(data[stat_index][2])
@@ -46,13 +43,16 @@ def calculate_longevity(data: List[List[int]]) -> List[List[int]]:
     return data[:-2]
 
 
-def convert_to_dict(datalist: List[List[int]]) -> Dict[int, Dict[int, List[int]]]:
-    datadict = {}
+def _convert_to_dict(datalist: List[List[int]]) -> Tuple[Dict[int, Dict[int, int]], Dict[int, Dict[int, int]]]:
+    peak_dict = {}
+    longevity_dict = {}
     # Add initial keys to avoid keyerror.
     for year in range(2004, 2021):
-        datadict[year] = {}
+        peak_dict[year] = {}
+        longevity_dict[year] = {}
 
     for row in datalist:
-        datadict[row[0]][row[1]] = [row[2], row[3]]
+        peak_dict[row[0]][row[1]] = row[2]
+        longevity_dict[row[0]][row[1]] = row[3]
 
-    return datadict
+    return peak_dict, longevity_dict
