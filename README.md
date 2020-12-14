@@ -10,8 +10,10 @@ This program does not advocate natural disasters, however.
 
 ### Python
 - Python 3.8.5
-- Tensorflow 2.3.1
+- tensorflow 2.3.1
 - numpy 1.18.5
+- matplotlib 3.3.3
+- python-ta 1.6.0
 
 ## Specifications
 All of the below are one-hot encoded before being used as Keras training & testing data.
