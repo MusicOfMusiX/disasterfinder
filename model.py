@@ -31,8 +31,8 @@ class Model:
         self._generate_sets()
         self._build()
 
-    def train(self) -> tf.keras.callbacks.History:
-        return self.model.fit(self.train_inputs, self.train_outputs, epochs=60)
+    def train(self, _epochs=10) -> tf.keras.callbacks.History:
+        return self.model.fit(self.train_inputs, self.train_outputs, epochs=_epochs)
 
     def test(self) -> None:
         self.model.evaluate(self.test_inputs, self.test_outputs)
@@ -44,13 +44,13 @@ class Model:
     def _build(self) -> None:
         self.model = tf.keras.Sequential([
             tf.keras.layers.Flatten(input_shape=(15,)),
-            # tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(64, activation='relu'),
             # tf.keras.layers.Dense(32, activation='relu'),
             tf.keras.layers.Dense(1)
         ])
 
         self.model.compile(
-            optimizer=tf.optimizers.Adam(learning_rate=0.005),
+            optimizer=tf.optimizers.Adam(learning_rate=0.001),
             loss='mean_absolute_error')
 
     def _generate_sets(self, test_num=200) -> None:
